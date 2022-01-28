@@ -76,6 +76,7 @@ app.shortcut('who_am_i', async({
     console.log('⚡️ Bolt app is running!');
   })();
    */
+  /*
   const { App, SocketModeReceiver } = require('@slack/bolt');
   const port = process.env.port || 3000;
  require('dotenv').config();
@@ -141,8 +142,69 @@ app.shortcut('who_am_i', async({
     }
   
   });
-
+/*
 (async () => {
   await app.start(port);
   console.log('⚡️ Bolt app started');
 })();
+
+app.listen(port, ()=>{
+  //await app.start(port);
+  console.log('⚡️ Bolt app started');
+}) */
+
+const { App } = require('@slack/bolt');
+require('dotenv').config();
+
+const app = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+  port: process.env.PORT || 30009
+});
+
+app.message('hey', async ({message, say})=> {
+        app.say(`hey, ${message.user}`);
+});
+
+(async ()=> {
+  await app.start();
+  console.log('⚡️ Bolt app started');
+})();
+
+app.shortcut('who_am_i', async({
+  shortcut,
+  ack,
+  client
+}) => {
+  try {
+    //acknowledge shortcut req
+    await ack();
+    //call the view.open method
+    const result = await client.views.open({
+      trigger_id : shortcut.trigger_id,
+      view: {
+        type : "modal",
+        title: {
+          type: "plain_text",
+          text: "My App"
+        },
+        close: {
+          type:"plain_text",
+          text:"Close"
+        },
+        blocks: [{
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "hello KeyKloud Team"
+          }
+        }]
+      }
+    });
+    console.log(result);
+
+  } catch(error){
+    console.error(error);
+  }
+
+});
