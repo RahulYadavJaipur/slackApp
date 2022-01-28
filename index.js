@@ -9,7 +9,7 @@ const express =require('express');
 
 const abc =express();
 
-//const port = process.env.PORT || 30003 ;
+const PORT = process.env.PORT || 30003 ;
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -110,7 +110,7 @@ app.shortcut('who_am_i', async({
 
   (async () => {
     // Start your app
-    await app.start(port);
+    await app.start(PORT);
   
     console.log('⚡️ Bolt app is running!');
   })();
