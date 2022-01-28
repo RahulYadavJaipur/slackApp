@@ -166,6 +166,21 @@ app.message('hey', async ({message, say})=> {
         await say(`hey, <@${message.user}>!`);
 });
 
+//regexp for the evnets
+app.message(/^(hi|hello|hii|Good Morning|Good Evening).*/, async ({ context, say }) => {
+  // RegExp matches are inside of context.matches
+  const greeting = context.matches[0];
+
+  await say(`${greeting}, how are you?`);
+});
+
+app.message(':taco:', async ({ message, say }) => {
+  await say(`Congratulation, <@${message.user}> You Got Taco`);
+});
+app.message('not avilable', async({message, say})=>{
+   await say(`Hey <@${message.user}> Please add ooo on google calender`);
+})
+
 (async ()=> {
   await app.start();
   console.log('⚡️ Bolt app started');
