@@ -9,14 +9,14 @@ const express =require('express');
 
 const abc =express();
 
-const port = process.env.PORT || 30003 ;
+//const port = process.env.PORT || 30003 ;
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
     socketMode: true, 
-    appToken: process.env.SLACK_APP_TOKEN
-    //port: process.env.PORT || 3000
+    appToken: process.env.SLACK_APP_TOKEN,
+    port: process.env.PORT || 3000
   });
 
   app.message('rahul', async ({ message, say }) => {
@@ -24,6 +24,89 @@ const app = new App({
     await say(`Hey there <@${message.user}>!`);
   });
   
+
+
+
+// Shortcuts
+app.shortcut('who_am_i', async({
+    shortcut,
+    ack,
+    client
+  }) => {
+    try {
+      //acknowledge shortcut req
+      await ack();
+      //call the view.open method
+      const result = await client.views.open({
+        trigger_id : shortcut.trigger_id,
+        view: {
+          type : "modal",
+          title: {
+            type: "plain_text",
+            text: "My App"
+          },
+          close: {
+            type:"plain_text",
+            text:"Close"
+          },
+          blocks: [{
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text:`Loged In With User Using UserName: ${USER_NAME} `
+            }
+          }]
+        }
+      });
+      console.log(result);
+  
+    } catch(error){
+      console.error(error);
+    }
+  
+  });
+  
+  
+  // contact shortcut
+  
+  app.shortcut('contact_id', async({
+    shortcut,
+    ack,
+    client
+  }) => {
+    try {
+      //acknowledge shortcut req
+      await ack();
+      //call the view.open method
+      const result = await client.views.open({
+        trigger_id : shortcut.trigger_id,
+        view: {
+          type : "modal",
+          title: {
+            type: "plain_text",
+            text: "My App"
+          },
+          close: {
+            type:"plain_text",
+            text:"Close"
+          },
+          blocks: [{
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text:"Hello Keykloud"
+            }
+          }]
+        }
+      });
+      console.log(result);
+  
+    } catch(error){
+      console.error(error);
+    }
+  
+  });
+
 
   (async () => {
     // Start your app
