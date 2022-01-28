@@ -53,7 +53,7 @@ app.shortcut('who_am_i', async({
             type: "section",
             text: {
               type: "mrkdwn",
-              text:`Loged In With User Using UserName: ${USER_NAME} `
+              text: "hello KeyKloud Team"
             }
           }]
         }
@@ -67,45 +67,6 @@ app.shortcut('who_am_i', async({
   });
   
   
-  // contact shortcut
-  
-  app.shortcut('contact_id', async({
-    shortcut,
-    ack,
-    client
-  }) => {
-    try {
-      //acknowledge shortcut req
-      await ack();
-      //call the view.open method
-      const result = await client.views.open({
-        trigger_id : shortcut.trigger_id,
-        view: {
-          type : "modal",
-          title: {
-            type: "plain_text",
-            text: "My App"
-          },
-          close: {
-            type:"plain_text",
-            text:"Close"
-          },
-          blocks: [{
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text:"Hello Keykloud"
-            }
-          }]
-        }
-      });
-      console.log(result);
-  
-    } catch(error){
-      console.error(error);
-    }
-  
-  });
 
 
   (async () => {
