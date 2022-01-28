@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^3.9.0",
+    "@slack/client": "^5.0.2",
     "dotenv": "^14.3.2",
     "exprss": "^0.0.1-security",
     "jsforce": "^1.11.0"
