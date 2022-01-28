@@ -77,6 +77,7 @@ app.shortcut('who_am_i', async({
   })();
    */
   const { App, SocketModeReceiver } = require('@slack/bolt');
+  const port = process.env.port || 3000;
  require('dotenv').config();
 const socketModeReceiver = new SocketModeReceiver({
   appToken: process.env.SLACK_APP_TOKEN,
@@ -142,6 +143,6 @@ app.shortcut('who_am_i', async({
   });
 
 (async () => {
-  await app.start();
+  await app.start(port);
   console.log('⚡️ Bolt app started');
 })();
