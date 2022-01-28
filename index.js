@@ -179,7 +179,7 @@ app.message(':taco:', async ({ message, say }) => {
 });
 app.message('not avilable', async({message, say})=>{
    await say(`Hey <@${message.user}> Please add ooo on google calender`);
-})
+});
 
 (async ()=> {
   await app.start();
