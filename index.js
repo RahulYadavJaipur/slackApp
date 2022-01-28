@@ -163,7 +163,7 @@ const app = new App({
 });
 
 app.message('hey', async ({message, say})=> {
-        app.say(`hey, ${message.user}`);
+        await say(`hey, ${message.user}`);
 });
 
 (async ()=> {
