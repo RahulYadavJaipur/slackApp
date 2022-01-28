@@ -9,7 +9,7 @@ const express =require('express');
 
 const abc =express();
 
-const PORT = process.env.PORT || 30003 ;
+var PORT = process.env.PORT || 30003;
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
