@@ -3,14 +3,14 @@ const exress = require('express');
 const jsforce = require('jsforce');
 require('dotenv').config();
 const app = express();
-const port = process.env.PORT || 30009
+const port = process.env.PORT || 3030
 
 var oauth2 = new jsforce.OAuth2({
     // you can change loginUrl to connect to sandbox or prerelease env.
     loginUrl : 'https://login.salesforce.com',
-    clientId : '3MVG9pRzvMkjMb6lT2n2O0dnKS4Z_Qm8MqYQAqhj_l37LmiopXmNLSzdQ3yK5jhV3TH16o46HTLV_K4jg9XeO',
-    clientSecret : 'B11F12D0350C0517001BF432958F60C3CCF9BEB612243E51C112F279E1753D4E',
-    redirectUri : 'https://login.salesforce.com/oauth2/callback'
+    clientId : '3MVG9pRzvMkjMb6lT2n2O0dnKS7nnxkbu722smJP5gFGRi1yb0.Q2lb6JPmlfbBWefD9r5Wy2BtIP_xZmFmO.',
+    clientSecret : '0FE98B3B7C1D0A845BEC94446F1063A151281A9AD278748568A31F9CAC39E251',
+    redirectUri : 'http://localhost:3030'
   });
   //
   // Get authorization url and redirect to it.
